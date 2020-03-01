@@ -1,17 +1,15 @@
 # numerical analysis
 
-
 ### 1 task
 
 1. `f(x)=(x^3) - (2 * (x^2)) - x + 2`
 
-- [x] f(x) com a legenda função cúbica no intervalo de x [−1.5,2.5]
+- [x] f(x) com a legenda função cúbica no intervalo de `x [−1.5,2.5]`
 - [x] a reta tangente no ponto `(1,f(1))` com a legenda "reta tangente em x = 1"
 - 4 pontos:
 - [x] `(1,f(1))`
 - [x] a interseção entre a reta tangente e o eixo x
-- [ ] os dois pontos críticos
-- [ ] e as respectivas retas tangentes
+- [ ] os dois pontos críticos (e as respectivas retas tangentes)
 - [x] adicionar um grid, eixo x e eixo y
 
 2. `f(x)`:
