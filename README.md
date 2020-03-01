@@ -1,6 +1,5 @@
 # numerical analysis
 
-gp.s([tang], filename="tangente.dat")
 
 ### 1 task
 
@@ -20,7 +19,7 @@ gp.s([tang], filename="tangente.dat")
 - [ ] Partindo de um ponto conhecido da função, estime outros pontos de `f(x)` no intervalo `[−6:6]` sabendo que:
 
   - `f(0)=1` (o ponto conhecido)
-  - `f′(x)=cos(x)−xsen(x)`
+  - `f'(x)=cos(x)−xsen(x)`
 
 - [ ] Grave os pontos estimados em um arquivo e plote-os com\ plot arquivos.pts with lp, `x*cos(x) + 1`
   - `f(x)=x*cos(x) + 1`, mas utilizaremos essa informação apenas para comparar as estimativas de f(x) com f(x)
