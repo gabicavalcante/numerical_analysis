@@ -9,7 +9,7 @@
 - 4 pontos:
 - [x] `(1,f(1))`
 - [x] a interseção entre a reta tangente e o eixo x
-- [ ] os dois pontos críticos (e as respectivas retas tangentes)
+- [x] os dois pontos críticos (e as respectivas retas tangentes)
 - [x] adicionar um grid, eixo x e eixo y
 
 2. `f(x)`:
