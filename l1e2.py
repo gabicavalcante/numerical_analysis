@@ -13,7 +13,7 @@ f_even = lambda k, x: (-1**(k/2)) * k * sin(x) + (-1**(k/2)) * x * cos(x)
 def taylor(x):
     sum_ = 0
     a = 0
-    for n in range(0, 16):
+    for n in range(0, 10):
         if n % 2 == 0:
             sum_ += (f_even(n, a)/factorial(n)) * ((x - a)**n)
         else:
@@ -32,7 +32,7 @@ def get_point(x, h, fx):
     
 def points():
     x = 0 
-    H = 0.1
+    H = 0.5
     fx = 1
 
     points_x = []
@@ -44,6 +44,9 @@ def points():
         points_y.append(f_xh) 
 
         fx = f_xh
+
+    points_x.reverse()
+    points_y.reverse()
 
     x = 0  
     fx = 1
@@ -73,18 +76,22 @@ def plot_graph(a, b):
     gp.c('replot x*cos(x) + 1 title "f(x) = x*cos(x) + 1"')
 
 
-if __name__ == '__main__': 
-    plot_graph(-6, 6)
-
+def plot_graph_taylo(a, b):
     gp.c('set grid')
-    gp.c(f'set xrange[-4:4]')
+    gp.c(f'set xrange[{a}:{b}]')
     gp.c('set xzeroaxis')
     gp.c('set yzeroaxis')
 
-    points_x = np.linspace(-10, 10, 200)
+    points_x = np.linspace(a, b, 100)
     points_y = [taylor(x) for x in points_x]
     gp.s([points_x, points_y], filename='taylor.pts')
     gp.c('plot "taylor.pts"')
     #gp.c(f'plot 1+(x**1)/{factorial(1)} + -3*x**3/{factorial(3)} + 5*x**5/{factorial(5)} + -7*x**7/{factorial(7)} title "taylor"')
     gp.c('replot x*cos(x) + 1 title "f(x) = x*cos(x) + 1"')
+
+if __name__ == '__main__': 
+    a = -6
+    b = 6
+    #plot_graph(a, b)
+    plot_graph_taylo(a, b)
     
