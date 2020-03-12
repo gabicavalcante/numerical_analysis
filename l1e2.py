@@ -3,7 +3,24 @@ from math import *
 import numpy as np  
 
 derive = lambda x: cos(x) - x * sin(x)
-# f_xh = lambda f_x, h, x: f_x + h * derive(x)
+
+f = lambda x: (x * cos(x)) + 1
+
+f_odd = lambda x, k: (-1**((k-1)/2)) * k * cos(x) + (-1**((k-1)/2)) * x * sin(x)
+f_even = lambda k, x: (-1**(k/2)) * k * sin(x) + (-1**(k/2)) * x * cos(x)
+
+
+def taylor(x):
+    sum_ = 0
+    a = 0
+    for n in range(0, 16):
+        if n % 2 == 0:
+            sum_ += (f_even(n, a)/factorial(n)) * ((x - a)**n)
+        else:
+            sum_ += (f_odd(n, a)/factorial(n)) * ((x - a)**n)
+
+    return sum_
+
  
 def get_point(x, h, fx): 
     xh = x + h        
@@ -15,25 +32,24 @@ def get_point(x, h, fx):
     
 def points():
     x = 0 
-    h = -0.5
+    H = 0.1
     fx = 1
 
     points_x = []
     points_y = []
     
     while x > -6:
-        x, f_xh = get_point(x, h, fx)  
+        x, f_xh = get_point(x, -H, fx)  
         points_x.append(x)
         points_y.append(f_xh) 
 
         fx = f_xh
 
-    x = 0 
-    h = 0.5
+    x = 0  
     fx = 1
     
     while x < 6:
-        x, f_xh = get_point(x, h, fx)  
+        x, f_xh = get_point(x, H, fx)  
         points_x.append(x)
         points_y.append(f_xh) 
 
@@ -44,8 +60,6 @@ def points():
 
 
 def plot_graph(a, b):
-    x = np.linspace(a, b, 200)
-
     gp.c('set grid')
     gp.c(f'set xrange[{a}:{b}]')
     gp.c('set xzeroaxis')
@@ -61,3 +75,16 @@ def plot_graph(a, b):
 
 if __name__ == '__main__': 
     plot_graph(-6, 6)
+
+    gp.c('set grid')
+    gp.c(f'set xrange[-4:4]')
+    gp.c('set xzeroaxis')
+    gp.c('set yzeroaxis')
+
+    points_x = np.linspace(-10, 10, 200)
+    points_y = [taylor(x) for x in points_x]
+    gp.s([points_x, points_y], filename='taylor.pts')
+    gp.c('plot "taylor.pts"')
+    #gp.c(f'plot 1+(x**1)/{factorial(1)} + -3*x**3/{factorial(3)} + 5*x**5/{factorial(5)} + -7*x**7/{factorial(7)} title "taylor"')
+    gp.c('replot x*cos(x) + 1 title "f(x) = x*cos(x) + 1"')
+    

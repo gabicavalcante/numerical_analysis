@@ -28,7 +28,8 @@ def tangent_line_gp(f, a, b):
     gp.c('plot (x**3) - (2* (x**2)) - x + 2 title "função cúbica"')
 
     # Tangente x = 1
-    gp.c('replot "tangente.dat" with lines title "reta tangente em x = 1"')
+    #gp.c('replot "tangente.dat" with lines title "reta tangente em x = 1"')
+    gp.c('replot -2*x + 2 with lines title "reta tangente em x = 1"')
 
     # 1, f(1))
     gp.c(f'replot "<echo 1 {f(1)}" title "(1, f(1))"')
