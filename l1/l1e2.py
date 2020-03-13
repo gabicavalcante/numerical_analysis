@@ -6,18 +6,22 @@ derive = lambda x: cos(x) - x * sin(x)
 
 f = lambda x: (x * cos(x)) + 1
 
-f_odd = lambda x, k: (-1**((k-1)/2)) * k * cos(x) + (-1**((k-1)/2)) * x * sin(x)
-f_even = lambda k, x: (-1**(k/2)) * k * sin(x) + (-1**(k/2)) * x * cos(x)
+# impar
+f_odd = lambda x, k: ((-1)**((k-1)/2)) * k * cos(x) + ((-1)**((k-1)/2)) * x * sin(x)
+# par
+f_even = lambda x, k: ((-1)**(k/2)) * k * sin(x) + ((-1)**(k/2)) * x * cos(x)
 
 
 def taylor(x):
     sum_ = 0
     a = 0
-    for n in range(0, 10):
+    for n in range(0, 25):
         if n % 2 == 0:
-            sum_ += (f_even(n, a)/factorial(n)) * ((x - a)**n)
+            #print('{const}*x**{index}/{index}!'.format(const=f_even(0, n), index=n))
+            sum_ += (f_even(a, n)/factorial(n)) * ((x - a)**n)
         else:
-            sum_ += (f_odd(n, a)/factorial(n)) * ((x - a)**n)
+            #print('{const}*x**{index}/{index}!'.format(const=f_odd(0, n), index=n))
+            sum_ += (f_odd(a, n)/factorial(n)) * ((x - a)**n)
 
     return sum_
 
@@ -72,13 +76,14 @@ def plot_graph(a, b):
 
     gp.s(points(), filename="arquivos.pts")
 
-    gp.c('replot "arquivos.pts" with lines title "f(x) no intervalo [−6:6]"')
+    gp.c('replot "arquivos.pts" with lp title "f(x) no intervalo [−6:6]"')
     gp.c('replot x*cos(x) + 1 title "f(x) = x*cos(x) + 1"')
 
 
 def plot_graph_taylo(a, b):
     gp.c('set grid')
     gp.c(f'set xrange[{a}:{b}]')
+    gp.c(f'set yrange[-10:10]')
     gp.c('set xzeroaxis')
     gp.c('set yzeroaxis')
 
@@ -92,6 +97,6 @@ def plot_graph_taylo(a, b):
 if __name__ == '__main__': 
     a = -6
     b = 6
-    #plot_graph(a, b)
-    plot_graph_taylo(a, b)
+    plot_graph(a, b)
+    #plot_graph_taylo(a, b)
     
